@@ -34,7 +34,7 @@ jobs:
           SITE_BASE: ${{ vars.SITE_BASE || format('/{0}/', github.event.repository.name) }}
           VITE_GITHUB_REPOSITORY: ${{ github.repository }}
           SITE_URL: ${{ vars.SITE_URL }}
-        run: npm run build:with-demo
+        run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload pages artifact
