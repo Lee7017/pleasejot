@@ -66,9 +66,8 @@ URL 空缺时按钮保持禁用，不会生成假的下载链接。iOS/iPadOS �
 
 1. 在应用仓库执行 `npm run build:demo`，产物在 `tmp/web-demo/`；默认 base 为 `/pleasejot/demo/`，可通过 `PLEASEJOT_DEMO_BASE` 调整。
 2. 运行 `node apps/tauri/scripts/web-demo-regression.mjs`，验证桌面/移动布局、Vditor 子路径资源、编辑保存和刷新重置。
-3. 将静态产物压缩为独立的 `pleasejot-web-demo-<版本>-<SHA前缀>.zip`，上传到 GitHub Release；它不属于原生热更新。
-4. 修改官网 `demo.json` 中的固定下载地址、字节数和完整 SHA-256。现有 `build:with-demo` 流程会下载并校验演示包，再替换 `docs/.vitepress/dist/demo/`。
-5. 本地可用 `DEMO_DIST=/absolute/path/to/tmp/web-demo npm run build:with-demo`，仍校验 demo 身份和网站 base。GitHub Actions 使用 `demo.json`，后续网站部署会持续附带同一演示包。
+3. 把 `tmp/web-demo/` 直接复制到官网仓库的 `docs/public/demo/`，随官网提交部署；不再生成 demo ZIP 或 `demo.json`，也不作为 Release 附件。
+4. 官网使用 `npm run build`，VitePress 会把 `docs/public/demo/` 原样复制到输出；发布脚本会清理上一版遗留文件。
 
 `/demo/` 的演示环境应明确提示内存 Mock、刷新重置、设备同步仅模拟，不接入账号认证服务器、文件系统和真实局域网同步。
 
