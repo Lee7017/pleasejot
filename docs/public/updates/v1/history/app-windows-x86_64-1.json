@@ -1,0 +1,5 @@
+{
+  "keyId": "release-2026",
+  "payload": "{\"schema\":1,\"kind\":\"app\",\"channel\":\"stable\",\"target\":\"windows-x86_64\",\"release\":{\"version\":\"0.1.0\",\"sequence\":1,\"url\":\"https://github.com/Lee7017/pleasejot/releases/download/v0.1.0/pleasejot-windows-x86_64.exe\",\"size\":18044640,\"sha256\":\"017e7621fbe19499af69cbe38ee892499d0ceee6e5042089ead58b0288e1574d\",\"notes\":\"PleaseJot 0.1.0 正式版\",\"publishedAt\":\"2026-11-20T05:18:43.357Z\"}}",
+  "signature": "d9b250e4b3c6ef2edf3bf1a6be2400912d915dc3615329ec4da761ab7ca2666b4f7e116d7e0b0ec192cd0cbbaeea918ca8d17032aa1e5e74c47009ef34c26807"
+}

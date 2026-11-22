@@ -11,6 +11,6 @@ aside: false
 
 ## 最新版本
 
-[v0.1.0 · 2026-11-20](/changelog/releases/2026-11-20-v0.1.0.html)：首个正式发布版本，提供 Windows 64 位与 Android ARM64 安装包。
+[v0.1.1 · 2026-11-23](/changelog/releases/2026-11-23-v0.1.1.html)：PleaseJot 0.1.1
 
 安装包只通过 [软件下载](/download/) 页面链接到 GitHub Releases；123 云盘不提供安装包下载。

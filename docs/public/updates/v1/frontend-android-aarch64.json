@@ -1,5 +1,5 @@
 {
   "keyId": "release-2026",
-  "payload": "{\"schema\":1,\"kind\":\"frontend\",\"channel\":\"stable\",\"target\":\"android-aarch64\",\"release\":null}",
-  "signature": "aa3a43ed09e4960eb47fb9791e7420f9664afc661f782daab25df5d3c0d6f04dcf836ee0469ee249184dae3139c2105a45bdfe18475c7f1b3c536aa46898c705"
+  "payload": "{\"schema\":1,\"kind\":\"frontend\",\"channel\":\"stable\",\"target\":\"android-aarch64\",\"release\":{\"version\":\"0.1.1\",\"sequence\":4,\"nativeApi\":{\"min\":13,\"max\":13},\"nativeVersion\":{\"min\":\"0.1.1\",\"max\":\"0.1.1\"},\"url\":\"https://github.com/Lee7017/pleasejot-ota/releases/download/frontend-v0.1.1-4/pleasejot-frontend-android-aarch64-0.1.1-4.zip\",\"size\":14810845,\"sha256\":\"e4be4e85d48e818f0cbe17ff52cbf9ff3c34d54a3126a2fd98418339c2fa32d9\",\"notes\":\"# PleaseJot 0.1.1\\n\\n## 分页与导航\\n\\n- 修复分页吸附先冲过目标页再回弹、快速连续滑动跨首尾后落错页的问题。\\n- 仓库与待办标题改为交叉淡入，滑动中段不再出现标题空白。\\n- 鼠标滚轮改为连续跟手：半轮约两页，停手约 90ms 后平滑吸附，不再一格一页、一卡一卡。\\n- 触摸手势仍保持一次一页，不改变原有操作习惯。\\n\\n## 待办\\n\\n- 分页标题栏新增按视图自适应的筛选：时间线支持隐藏已完成、只看逾期；今日应办和无定期支持隐藏已完成；循环历史支持按状态筛选。\\n- 时间线、今日应办、循环历史和无定期分别记忆筛选状态；循环规划与全部逾期没有可筛选项时，入口保留但置灰。\\n- 分区图标迁到分页底部圆点，圆点同步皮肤的缩放和透明度。\\n\\n## 皮肤与文档\\n\\n- 更新滚轮相关 motion token 语义：`wheel-frequency` 用于推导吸附时长，`follow-ms` 控制跟手平滑。\\n- 同步皮肤 SDK、Schema、完整样例和导航文档。\\n\\n## 验证\\n\\n- 类型检查（原生与 Mock）、导航回归、皮肤回归通过。\\n- 本次未对正式安装包进行全新 Windows / Android 系统的完整安装与真机业务验收。\",\"publishedAt\":\"2026-11-22T19:09:54.346Z\"}}",
+  "signature": "3b974eae088337eb600c8e21983e1ef9b4f773c2aa825ee44d10b82b9575d5d0278636b343d71fdf487ddc92840172b0b4614a8ab25f0f25c5b5c8894a899a0d"
 }

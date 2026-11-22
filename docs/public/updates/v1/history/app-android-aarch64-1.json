@@ -1,0 +1,5 @@
+{
+  "keyId": "release-2026",
+  "payload": "{\"schema\":1,\"kind\":\"app\",\"channel\":\"stable\",\"target\":\"android-aarch64\",\"release\":{\"version\":\"0.1.0\",\"sequence\":1,\"url\":\"https://github.com/Lee7017/pleasejot/releases/download/v0.1.0/pleasejot-android-aarch64.apk\",\"size\":40016779,\"sha256\":\"ce1d9c458eb2a4e3d3558425f09c7d18bc9ee9cccd664c7c0476b9d4893397f8\",\"notes\":\"PleaseJot 0.1.0 正式版\",\"publishedAt\":\"2026-11-20T05:16:29.514Z\"}}",
+  "signature": "2e7a18ab0e534d57ba99a34feeb50e3098560b493f7222992823c2b4b11758cd468783d8ed43bbd83b86a2eb331dc8acd17c2b5fa8e6b9297fb5c33c93d9cb09"
+}
