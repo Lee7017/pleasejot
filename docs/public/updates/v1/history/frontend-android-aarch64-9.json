@@ -1,0 +1,5 @@
+{
+  "keyId": "release-2026",
+  "payload": "{\"schema\":1,\"kind\":\"frontend\",\"channel\":\"stable\",\"target\":\"android-aarch64\",\"release\":{\"version\":\"0.1.4\",\"sequence\":9,\"nativeApi\":{\"min\":14,\"max\":14},\"nativeVersion\":{\"min\":\"0.1.4\",\"max\":\"0.1.4\"},\"url\":\"https://github.com/Lee7017/pleasejot-ota/releases/download/frontend-v0.1.4-9/pleasejot-frontend-android-aarch64-0.1.4-9.zip\",\"size\":14822881,\"sha256\":\"e110c6c9a4e5d7d4020b333265b69b94af2f74be96b676dc1efe353d9cd76cff\",\"notes\":\"# PleaseJot 0.1.4 前端修复\\n\\n## 修复\\n\\n- 「检查更新」「清理未引用附件」等居中弹窗不再偏向右下：进出场动效改为保留 `translate(-50%,-50%)` 的居中位移。\",\"publishedAt\":\"2026-11-24T18:36:34.343Z\"}}",
+  "signature": "51e3c56ae627ba8171ac368ad886ea56a9e587a115a36b45ddf6b04d475edc59e23c6912c25a49117f3ced5877ed2327f0297a74a8ad168118a43f9ea351360b"
+}
