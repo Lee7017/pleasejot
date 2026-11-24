@@ -14,8 +14,8 @@ export interface ReleasePlatform {
 }
 
 export const releasePlatforms: ReleasePlatform[] = [
-  { name: 'Windows', icon: 'monitor', description: 'Windows 10 / 11 · 64 位', format: 'EXE / MSI', status: "已发布", url: "https://github.com/Lee7017/pleasejot/releases/download/v0.1.3/pleasejot-windows-x86_64.exe", version: "0.1.3" },
-  { name: 'Android', icon: 'smartphone', description: 'Android 7.0 及以上 · ARM64', format: 'APK', status: "已发布", url: "https://github.com/Lee7017/pleasejot/releases/download/v0.1.3/pleasejot-android-aarch64.apk", version: "0.1.3" },
+  { name: 'Windows', icon: 'monitor', description: 'Windows 10 / 11 · 64 位', format: 'EXE / MSI', status: "已发布", url: "https://github.com/Lee7017/pleasejot/releases/download/v0.1.4/pleasejot-windows-x86_64.exe", version: "0.1.4" },
+  { name: 'Android', icon: 'smartphone', description: 'Android 7.0 及以上 · ARM64', format: 'APK', status: "已发布", url: "https://github.com/Lee7017/pleasejot/releases/download/v0.1.4/pleasejot-android-aarch64.apk", version: "0.1.4" },
   { name: 'macOS', icon: 'laptop', description: 'Mac 安装程序', format: 'DMG / PKG', status: '未开放', url: '', version: '' },
   { name: 'iOS / iPadOS', icon: 'tablet', description: '须符合 Apple 分发要求', format: '实际分发渠道待确定', status: '未开放', url: '', version: '' }
 ]

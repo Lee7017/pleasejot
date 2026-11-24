@@ -11,6 +11,6 @@ aside: false
 
 ## 最新版本
 
-[v0.1.3 · 2026-11-24](/changelog/releases/2026-11-24-v0.1.3.html)：PleaseJot 0.1.3
+[v0.1.4 · 2026-11-25](/changelog/releases/2026-11-25-v0.1.4.html)：PleaseJot 0.1.4
 
 安装包只通过 [软件下载](/download/) 页面链接到 GitHub Releases；123 云盘不提供安装包下载。
