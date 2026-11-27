@@ -18,8 +18,8 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}favicon-32x32.png` }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}logo.svg` }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
-    ['meta', { name: 'theme-color', content: '#f3f4f6', media: '(prefers-color-scheme: light)' }],
-    ['meta', { name: 'theme-color', content: '#15171b', media: '(prefers-color-scheme: dark)' }],
+    ['meta', { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' }],
+    ['meta', { name: 'theme-color', content: '#000000', media: '(prefers-color-scheme: dark)' }],
     ['meta', { name: 'description', content: 'PleaseJot— 本地优先的 Markdown 笔记与资料管理工具' }]
   ],
   themeConfig: {

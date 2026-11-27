@@ -21,7 +21,7 @@ const downloadPlatforms = releasePlatforms.filter(item => item.name !== 'iOS / i
       <a class="xs-button secondary" :href="withBase('/invite/')">申请邀请码 <ArrowRight :size="17" /></a>
     </section>
     <div class="download-grid">
-      <article v-for="item in downloadPlatforms" :key="item.name" class="download-card">
+      <article v-for="item in downloadPlatforms" :key="item.name" class="download-card" :data-platform="item.name">
         <div class="platform-icon"><component :is="iconMap[item.icon]" :size="30" stroke-width="1.55"/></div>
         <div class="download-card-heading"><h2>{{ item.name }}</h2><span :class="item.status === '已发布' ? 'tag live' : 'tag'">{{ item.status }}</span></div>
         <p>{{ item.description }}</p>

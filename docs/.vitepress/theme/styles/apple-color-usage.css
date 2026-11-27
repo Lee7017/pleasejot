@@ -1,0 +1,62 @@
+/* Keep the brand monochrome. Apply system hues to purposeful content and
+   status, using light/dark contrast-safe foregrounds on subtle tinted surfaces. */
+:root {
+  --vp-c-divider: var(--apple-separator);
+  --vp-c-gutter: var(--apple-system-gray5);
+  --vp-c-brand-1: var(--apple-label);
+  --vp-c-brand-2: var(--apple-secondary-label);
+  --vp-c-brand-3: var(--apple-tertiary-label);
+  --vp-c-brand-soft: var(--apple-tertiary-fill);
+  --vp-c-tip-1: var(--apple-green-text);
+  --vp-c-tip-2: var(--apple-system-green);
+  --vp-c-tip-3: var(--apple-system-green);
+  --vp-c-tip-soft: color-mix(in srgb,var(--apple-system-green) 10%,transparent);
+  --vp-c-warning-1: var(--apple-orange-text);
+  --vp-c-warning-2: var(--apple-system-orange);
+  --vp-c-warning-3: var(--apple-system-orange);
+  --vp-c-warning-soft: color-mix(in srgb,var(--apple-system-orange) 12%,transparent);
+  --vp-c-danger-1: var(--apple-red-text);
+  --vp-c-danger-2: var(--apple-system-red);
+  --vp-c-danger-3: var(--apple-system-red);
+  --vp-c-danger-soft: color-mix(in srgb,var(--apple-system-red) 10%,transparent);
+}
+.xs-button.primary { background: var(--apple-label); border-color: var(--apple-label); color: var(--apple-background); }
+.xs-button.primary:hover { background: var(--apple-secondary-label); border-color: var(--apple-secondary-label); color: var(--apple-background); }
+.dark .xs-button.primary { background: var(--apple-label); border-color: var(--apple-label); color: var(--apple-background); }
+.dark .xs-button.primary:hover { background: var(--apple-secondary-label); border-color: var(--apple-secondary-label); color: var(--apple-background); }
+.vp-doc a, .vp-doc a:hover, .text-link, .hero-invite-link a, .figure-caption a { color: var(--apple-link) !important; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, .xs-button:focus-visible { outline-color: var(--apple-link); }
+.status-dot { background: var(--apple-system-green); opacity: 1; }
+.preview-file-row.current, .tree-line.selected { background: color-mix(in srgb, var(--apple-system-blue) 12%, var(--apple-secondary-background)); color: var(--apple-link); }
+.preview-file-row .lucide-folder, .preview-files-title .lucide-folder-open, .tree-line .lucide-folder, .tree-line .lucide-folder-open, .tree-heading .lucide-folder-open { color: var(--apple-orange-text); }
+.task-line .complete { color: var(--apple-green-text); }
+.drawing-top .lucide-pencil-line, .drawing-card > svg { color: var(--apple-purple-text); }
+.visual-sync { background: color-mix(in srgb,var(--apple-system-blue) 10%,var(--apple-secondary-background)); }
+.visual-tree { background: color-mix(in srgb,var(--apple-system-orange) 11%,var(--apple-secondary-background)); }
+.visual-super { background: color-mix(in srgb,var(--apple-system-purple) 9%,var(--apple-secondary-background)); }
+.sync-device > svg { color: var(--apple-link); }
+.sync-connection > svg { color: var(--apple-link); }
+.visual-caption > svg { color: var(--apple-teal-text); }
+.super-cards > div:first-child > svg { color: var(--apple-purple-text); }
+.super-cards > div:nth-child(2) > svg { color: var(--apple-teal-text); }
+.formats > span:nth-child(1) > svg { color: var(--apple-link); }
+.formats > span:nth-child(2) > svg { color: var(--apple-green-text); }
+.formats > span:nth-child(3) > svg { color: var(--apple-orange-text); }
+.formats > span:nth-child(4) > svg { color: var(--apple-red-text); }
+.pj-carousel .pj-carousel-desktop { background: color-mix(in srgb,var(--apple-system-blue) 12%,var(--apple-secondary-background)); }
+.pj-carousel .pj-carousel-tablet { background: color-mix(in srgb,var(--apple-system-purple) 12%,var(--apple-secondary-background)); }
+.pj-carousel .pj-carousel-phone { background: color-mix(in srgb,var(--apple-system-teal) 12%,var(--apple-secondary-background)); }
+.pj-carousel .pj-carousel-desktop .pj-carousel-art { color: var(--apple-link); }
+.pj-carousel .pj-carousel-tablet .pj-carousel-art { color: var(--apple-purple-text); }
+.pj-carousel .pj-carousel-phone .pj-carousel-art { color: var(--apple-teal-text); }
+.download-card[data-platform="Windows"] .platform-icon { color: var(--apple-link); background: color-mix(in srgb,var(--apple-system-blue) 12%,var(--apple-secondary-background)); }
+.download-card[data-platform="Android"] .platform-icon { color: var(--apple-green-text); background: color-mix(in srgb,var(--apple-system-green) 12%,var(--apple-secondary-background)); }
+.download-card[data-platform="macOS"] .platform-icon { color: var(--apple-purple-text); background: color-mix(in srgb,var(--apple-system-purple) 10%,var(--apple-secondary-background)); }
+.download-card .ios-card-icon { color: var(--apple-pink-text); background: color-mix(in srgb,var(--apple-system-pink) 10%,var(--apple-secondary-background)); }
+.download-card .tag.live { color: var(--apple-green-text); border-color: var(--apple-system-green); background: color-mix(in srgb,var(--apple-system-green) 10%,var(--apple-elevated-background)); }
+.download-support > svg { color: var(--apple-green-text); }
+.ios-support-card .ios-progress-fill { background: var(--apple-system-blue); }
+.ios-support-card .ios-error { color: var(--apple-red-text); }
+.feedback-page .feedback-eyebrow > svg { color: var(--apple-link); }
+.invite-field input::placeholder, .invite-field textarea::placeholder { color: var(--apple-placeholder); }
+::selection { background: color-mix(in srgb,var(--apple-system-blue) 24%,transparent); }

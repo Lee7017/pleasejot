@@ -11,7 +11,9 @@ import InviteRequest from './components/InviteRequest.vue'
 import BackToTop from './components/BackToTop.vue'
 import FeedbackForm from './components/FeedbackForm.vue'
 import './custom.css'
+import './styles/apple-colors.css'
 import './styles/visual-refresh.css'
+import './styles/apple-color-usage.css'
 
 export default {
   extends: DefaultTheme,

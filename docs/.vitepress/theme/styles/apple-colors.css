@@ -1,0 +1,138 @@
+/* Apple HIG system palette, sRGB reference values (2025-06-09 revision).
+   https://developer.apple.com/design/human-interface-guidelines/color
+   UIKit semantic background/label roles are represented as web variables;
+   text/interactive colors below adapt contrast for the actual web surfaces.
+   Do not use separator as text, or raw yellow/green/orange for small labels. */
+:root {
+  --apple-system-red: #ff383c;
+  --apple-system-orange: #ff8d28;
+  --apple-system-yellow: #ffcc00;
+  --apple-system-green: #34c759;
+  --apple-system-mint: #00c8b3;
+  --apple-system-teal: #00c3d0;
+  --apple-system-cyan: #00c0e8;
+  --apple-system-blue: #0088ff;
+  --apple-system-indigo: #6155f5;
+  --apple-system-purple: #cb30e0;
+  --apple-system-pink: #ff2d55;
+  --apple-system-brown: #ac7f5e;
+  --apple-system-gray: #8e8e93;
+  --apple-system-gray2: #aeaeb2;
+  --apple-system-gray3: #c7c7cc;
+  --apple-system-gray4: #d1d1d6;
+  --apple-system-gray5: #e5e5ea;
+  --apple-system-gray6: #f2f2f7;
+  --apple-background: #ffffff;
+  --apple-secondary-background: var(--apple-system-gray6);
+  --apple-tertiary-background: #ffffff;
+  --apple-elevated-background: #ffffff;
+  --apple-label: #000000;
+  --apple-secondary-label: #545458;
+  --apple-tertiary-label: #636366;
+  --apple-quaternary-label: var(--apple-system-gray2);
+  --apple-separator: rgba(60,60,67,.29);
+  --apple-opaque-separator: #c6c6c8;
+  --apple-fill: rgba(120,120,128,.20);
+  --apple-secondary-fill: rgba(120,120,128,.16);
+  --apple-tertiary-fill: rgba(118,118,128,.12);
+  --apple-placeholder: var(--apple-tertiary-label);
+  /* Contrast-safe Web text derived from the corresponding system hue. */
+  --apple-link: #0059c9;
+  --apple-green-text: #006b2c;
+  --apple-red-text: #b51229;
+  --apple-orange-text: #924000;
+  --apple-purple-text: #9425a5;
+  --apple-teal-text: #006d78;
+  --apple-pink-text: #b51b46;
+}
+:root.dark {
+  --apple-system-red: #ff4245;
+  --apple-system-orange: #ff9230;
+  --apple-system-yellow: #ffd600;
+  --apple-system-green: #30d158;
+  --apple-system-mint: #00dac3;
+  --apple-system-teal: #00d2e0;
+  --apple-system-cyan: #3cd3fe;
+  --apple-system-blue: #0091ff;
+  --apple-system-indigo: #6d7cff;
+  --apple-system-purple: #db34f2;
+  --apple-system-pink: #ff375f;
+  --apple-system-brown: #b78a66;
+  --apple-system-gray: #8e8e93;
+  --apple-system-gray2: #636366;
+  --apple-system-gray3: #48484a;
+  --apple-system-gray4: #3a3a3c;
+  --apple-system-gray5: #2c2c2e;
+  --apple-system-gray6: #1c1c1e;
+  --apple-background: #000000;
+  --apple-secondary-background: var(--apple-system-gray6);
+  --apple-tertiary-background: var(--apple-system-gray5);
+  --apple-elevated-background: var(--apple-system-gray6);
+  --apple-label: #ffffff;
+  --apple-secondary-label: #aeaeb2;
+  --apple-tertiary-label: #aeaeb2;
+  --apple-quaternary-label: var(--apple-system-gray2);
+  --apple-separator: rgba(84,84,88,.65);
+  --apple-opaque-separator: #38383a;
+  --apple-fill: rgba(120,120,128,.36);
+  --apple-secondary-fill: rgba(120,120,128,.32);
+  --apple-tertiary-fill: rgba(118,118,128,.24);
+  --apple-placeholder: var(--apple-tertiary-label);
+  --apple-link: #5cb8ff;
+  --apple-green-text: #4ad968;
+  --apple-red-text: #ff6165;
+  --apple-orange-text: #ffa056;
+  --apple-purple-text: #ea8dff;
+  --apple-teal-text: #3bddec;
+  --apple-pink-text: #ff8ac4;
+}
+@media (prefers-contrast: more) {
+  :root {
+    --apple-system-red: #e9152d;
+    --apple-system-orange: #c55300;
+    --apple-system-yellow: #a16a00;
+    --apple-system-green: #008932;
+    --apple-system-mint: #008575;
+    --apple-system-teal: #008198;
+    --apple-system-cyan: #007eae;
+    --apple-system-blue: #1e6ef4;
+    --apple-system-indigo: #564ade;
+    --apple-system-purple: #b02fc2;
+    --apple-system-pink: #e7124d;
+    --apple-system-brown: #956d51;
+    --apple-system-gray: #6c6c70;
+    --apple-system-gray2: #8e8e93;
+    --apple-system-gray3: #aeaeb2;
+    --apple-system-gray4: #bcbcc0;
+    --apple-system-gray5: #d8d8dc;
+    --apple-system-gray6: #ebebf0;
+    --apple-secondary-label: #303036;
+    --apple-tertiary-label: #48484a;
+    --apple-separator: var(--apple-opaque-separator);
+    --apple-link: #004eae;
+  }
+  :root.dark {
+    --apple-system-red: #ff6165;
+    --apple-system-orange: #ffa056;
+    --apple-system-yellow: #fedf43;
+    --apple-system-green: #4ad968;
+    --apple-system-mint: #54dfcb;
+    --apple-system-teal: #3bddec;
+    --apple-system-cyan: #6dd9ff;
+    --apple-system-blue: #5cb8ff;
+    --apple-system-indigo: #a7aaff;
+    --apple-system-purple: #ea8dff;
+    --apple-system-pink: #ff8ac4;
+    --apple-system-brown: #dba679;
+    --apple-system-gray: #aeaeb2;
+    --apple-system-gray2: #7c7c80;
+    --apple-system-gray3: #545456;
+    --apple-system-gray4: #444446;
+    --apple-system-gray5: #363638;
+    --apple-system-gray6: #242426;
+    --apple-secondary-label: #e5e5ea;
+    --apple-tertiary-label: #c7c7cc;
+    --apple-separator: var(--apple-opaque-separator);
+    --apple-link: #8acbff;
+  }
+}
