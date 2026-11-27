@@ -46,6 +46,9 @@ function onFocus(event: FocusEvent) {
   const target = event.target as HTMLElement
   const index = cards.findIndex(card => card.contains(target))
   if (index < 0) return
+  const bounds = target.getBoundingClientRect()
+  const hit = document.elementFromPoint(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2)
+  if (hit && target.contains(hit)) return
   const desired = window.scrollY + outer.value.getBoundingClientRect().top - TOP + index * (STEP - GAP)
   // Keyboard focus must not remain underneath an overlapping card.
   window.scrollTo({ top: desired, behavior: 'instant' })

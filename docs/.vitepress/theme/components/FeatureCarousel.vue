@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
     <div class="pj-carousel-controls" v-if="ready">
       <button type="button" aria-label="上一张卡片" :aria-disabled="moving" @click="go(1)"><ChevronLeft :size="24"/></button>
       <button type="button" aria-label="下一张卡片" :aria-disabled="moving" @click="go(-1)"><ChevronRight :size="24"/></button>
-      <button v-if="!reduced" type="button" :aria-label="userPaused ? '继续自动轮播' : '暂停自动轮播'" :aria-pressed="userPaused" @click="togglePause"><Play v-if="userPaused" :size="19"/><Pause v-else :size="19"/></button>
+      <button v-if="!reduced" class="pj-carousel-autoplay" type="button" :aria-label="userPaused ? '继续自动轮播' : '暂停自动轮播'" :aria-pressed="userPaused" @click="togglePause"><Play v-if="userPaused" :size="19"/><Pause v-else :size="19"/></button>
     </div>
   </section>
 </template>
@@ -135,8 +135,8 @@ onBeforeUnmount(() => {
 .pj-carousel-heading { padding: 0 24px 32px; text-align: center; }
 .pj-carousel-heading h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 550; margin: 16px 0; }
 .pj-carousel-heading p { font-size: 15px; line-height: 1.75; color: var(--xs-muted); }
-.pj-carousel-viewport { position: relative; display: flex; gap: 16px; overflow: hidden; padding-inline: 16px; }
-.pj-carousel-viewport.is-ready { display: block; padding: 0; }
+.pj-carousel-viewport { position: relative; display: flex; gap: 16px; overflow-x: auto; padding-inline: 16px; }
+.pj-carousel-viewport.is-ready { display: block; padding: 0; overflow: hidden; }
 .pj-carousel-card {
   flex: 0 0 min(634px, calc(100% - 32px)); min-height: 240px; padding: 32px;
   display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
@@ -156,10 +156,14 @@ onBeforeUnmount(() => {
 .pj-carousel-controls button:hover:not([aria-disabled=true]) { background: var(--xs-soft); }
 .pj-carousel-controls button:active:not([aria-disabled=true]) { transform: scale(.95); }
 @media(max-width: 680px) {
-  .pj-carousel { padding: 56px 0; }
+  .pj-carousel { padding: 32px 0 56px; }
   .pj-carousel-card { padding: 20px; }
   .pj-carousel-art { gap: 12px; }
   .pj-carousel-art > svg { width: 58px; height: 58px; }
   .pj-carousel-copy p { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pj-carousel-autoplay { display: none !important; }
+  .pj-carousel-card { transition: none !important; }
 }
 </style>

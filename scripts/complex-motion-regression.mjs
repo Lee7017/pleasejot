@@ -57,6 +57,7 @@ try {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth<=2),'horizontal overflow')
     await page.emulateMedia({reducedMotion:'reduce'})
     await page.waitForFunction(()=>!document.querySelector('.pj-stack-active'))
+    await page.waitForFunction(()=>!document.querySelector('.pj-carousel-autoplay'))
     assert(await page.getByRole('button',{name:'继续自动轮播'}).count()===0,'reduced motion autoplay control visible')
     assert(errors.length===0,errors.join(' | '))
     await page.close()
