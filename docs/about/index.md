@@ -18,7 +18,4 @@ PleaseJot 是围绕 Markdown 笔记、首页文件树、局域网同步与多格
 
 ## 更多信息
 
-- [开源致谢](/acknowledgements/)
-- [第三方许可证](/licenses/)
-- [使用文档](/guide/)
-- [用户反馈](/feedback/)
+<DocLinkCards kind="about" />

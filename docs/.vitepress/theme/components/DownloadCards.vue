@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
-import { Download, Monitor, Smartphone, Laptop, Tablet, Github, ShieldCheck, ArrowRight } from 'lucide-vue-next'
+import { Download, Monitor, Smartphone, Laptop, Tablet, Github, ShieldCheck, ArrowRight, SmartphoneNfc } from 'lucide-vue-next'
 import { releasePlatforms, releasesPageUrl } from '../data/releases'
 const iconMap = { monitor: Monitor, smartphone: Smartphone, laptop: Laptop, tablet: Tablet }
 const downloadPlatforms = releasePlatforms.filter(item => item.name !== 'iOS / iPadOS')
@@ -20,6 +20,7 @@ const downloadPlatforms = releasePlatforms.filter(item => item.name !== 'iOS / i
       </div>
       <a class="xs-button secondary" :href="withBase('/invite/')">申请邀请码 <ArrowRight :size="17" /></a>
     </section>
+    <div class="pj-download-heading"><div><span>PLATFORMS</span><h2>选择你的设备</h2></div><span>实际发布版本 · GitHub Releases</span></div>
     <div class="download-grid">
       <article v-for="item in downloadPlatforms" :key="item.name" class="download-card" :data-platform="item.name">
         <div class="platform-icon"><component :is="iconMap[item.icon]" :size="30" stroke-width="1.55"/></div>

@@ -10,15 +10,21 @@ import ScreenshotPage from './components/ScreenshotPage.vue'
 import InviteRequest from './components/InviteRequest.vue'
 import BackToTop from './components/BackToTop.vue'
 import FeedbackForm from './components/FeedbackForm.vue'
+import DocPageHeader from './components/DocPageHeader.vue'
+import DocLinkCards from './components/DocLinkCards.vue'
+import ChangelogTimeline from './components/ChangelogTimeline.vue'
 import './custom.css'
 import './styles/apple-colors.css'
 import './styles/visual-refresh.css'
 import './styles/apple-color-usage.css'
+import './styles/page-design.css'
+import './styles/product-pages.css'
 
 export default {
   extends: DefaultTheme,
   Layout: () => h(DefaultTheme.Layout, null, {
-    'layout-bottom': () => h(BackToTop)
+    'layout-bottom': () => h(BackToTop),
+    'doc-before': () => h(DocPageHeader)
   }),
   setup() {
     // VitePress 1.6.4 的 force-auto 使用系统媒体查询，但动态切换
@@ -38,5 +44,7 @@ export default {
     app.component('ScreenshotPage', ScreenshotPage)
     app.component('InviteRequest', InviteRequest)
     app.component('FeedbackForm', FeedbackForm)
+    app.component('DocLinkCards', DocLinkCards)
+    app.component('ChangelogTimeline', ChangelogTimeline)
   }
 } satisfies Theme

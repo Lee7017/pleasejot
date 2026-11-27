@@ -1,7 +1,18 @@
 import { defineConfig } from 'vitepress'
+import { readFile, writeFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createChangelogSidebar } from './changelogSidebar'
 
 const base = process.env.SITE_BASE || '/'
+const demoSource = fileURLToPath(new URL('../public/demo/index.html', import.meta.url))
+async function readDemoEntry() {
+  const html = await readFile(demoSource, 'utf8')
+  if (!html.includes('id="root"')) throw new Error('Expected the independent React Web Mock HTML entry')
+  // The app publisher owns this input. Keep its bundles untouched and only
+  // adapt the HTML asset URLs to the Pages base.
+  return html.replaceAll('/pleasejot/demo/', base + 'demo/')
+}
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -11,6 +22,27 @@ export default defineConfig({
   // GitHub Pages 无法保证扩展名省略后的直访行为，使用 .html 文档路由
   cleanUrls: false,
   lastUpdated: true,
+  // The Vue launcher and the React application must never share one output URL.
+  // Preserve the existing publisher's public/demo/index.html input contract.
+  async buildEnd(siteConfig) {
+    const launcher = await readFile(resolve(siteConfig.outDir, 'demo/index.html'), 'utf8')
+    if (!launcher.includes('data-pj-demo-launch')) throw new Error('Vue demo launcher was overwritten during build')
+    await writeFile(resolve(siteConfig.outDir, 'demo/app.html'), await readDemoEntry(), 'utf8')
+  },
+  vite: {
+    plugins: [{
+      name: 'pleasejot-demo-dev-entry',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (!/(?:^|\/)demo\/app\.html(?:\?|$)/.test(req.url || '')) return next()
+          readDemoEntry().then(html => {
+            res.setHeader('Content-Type', 'text/html; charset=utf-8')
+            res.end(html)
+          }).catch(next)
+        })
+      }
+    }]
+  },
   // 始终跟随系统深浅色：VitePress 不渲染电脑和手机的外观切换控件。
   appearance: 'force-auto',
   ...(process.env.SITE_URL ? { sitemap: { hostname: process.env.SITE_URL } } : {}),

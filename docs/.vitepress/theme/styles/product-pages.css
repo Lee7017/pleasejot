@@ -1,0 +1,64 @@
+/* Product, download, launch, feedback and invitation pages. */
+.browser-dots i { opacity:.9; }
+.browser-dots i:nth-child(1) { background:var(--apple-system-red); }
+.browser-dots i:nth-child(2) { background:var(--apple-system-yellow); }
+.browser-dots i:nth-child(3) { background:var(--apple-system-green); }
+.pj-download-heading { max-width:910px; margin:30px auto 16px; display:flex; justify-content:space-between; align-items:flex-end; gap:12px; }
+.pj-download-heading > div > span { font-size:10px; font-weight:650; letter-spacing:.12em; color:var(--apple-secondary-label); }
+.pj-download-heading h2 { font-size:24px; font-weight:600; margin-top:4px; }
+.pj-download-heading > span { font-size:11px; color:var(--apple-secondary-label); text-align:right; }
+.download-card { border-color:var(--apple-system-gray4); background:var(--apple-elevated-background); box-shadow:none; }
+.download-card .platform-icon { border:0; border-radius:15px; }
+.download-card .download-card-heading h2 { font-weight:620; }
+.download-card .tag:not(.live) { color:var(--apple-secondary-label); border-color:var(--apple-system-gray4); }
+.download-note { border-color:var(--apple-system-gray4); box-shadow:none; }
+.pj-demo-launch { max-width:1000px; margin-inline:auto; border-color:var(--apple-system-gray4); box-shadow:none; }
+.pj-demo-launch .demo-panel-top { background:var(--apple-secondary-background); }
+.pj-demo-launch-body { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1fr); gap:32px; align-items:center; padding:40px 32px; }
+.pj-demo-launch-copy { min-width:0; }
+.pj-demo-kicker { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600; color:var(--apple-green-text); }
+.pj-demo-launch-copy h2 { font-size:clamp(25px,3vw,36px); font-weight:580; line-height:1.25; margin:14px 0; text-wrap:balance; }
+.pj-demo-launch-copy > p { font-size:14px; line-height:1.85; color:var(--apple-secondary-label); }
+.pj-demo-launch-copy .pj-demo-open { margin:24px 0 8px; }
+.pj-demo-launch-copy .pj-demo-note { font-size:11px; }
+.pj-demo-art { background:var(--apple-secondary-background); border:1px solid var(--apple-system-gray4); border-radius:16px; overflow:hidden; }
+.pj-demo-window { display:flex; align-items:center; gap:12px; padding:12px 15px; border-bottom:1px solid var(--apple-separator); font-size:11px; color:var(--apple-secondary-label); }
+.pj-demo-illustration { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:38px 16px 24px; }
+.pj-demo-illustration > div { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; font-size:12px; }
+.pj-demo-illustration .pj-page-icon { width:60px; height:60px; border-radius:16px; }
+.pj-demo-art-caption { padding:0 12px 18px; font-size:11px; text-align:center; color:var(--apple-secondary-label); }
+.demo-rules > div > svg { color:var(--pj-accent-ink,var(--apple-secondary-label)); }
+.demo-rules > div { border-color:var(--apple-system-gray4); box-shadow:none; }
+.screenshots-grid > section { border:1px solid var(--apple-system-gray4); box-shadow:none; }
+.screenshots-grid .screenshot-placeholder { background:color-mix(in srgb,var(--pj-accent) 9%,var(--apple-secondary-background)); display:grid; place-items:center; color:var(--pj-accent-ink); }
+.pj-shot-frame { border:1.5px dashed currentColor; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; padding:12px; width:80%; height:68%; color:var(--pj-accent-ink); }
+.pj-shot-frame span { font-size:11px; text-align:center; }
+[data-shape="tablet"] .pj-shot-frame { width:62%; height:75%; }
+[data-shape="phone"] .pj-shot-frame { width:46%; height:87%; border-radius:15px; }
+.pj-shot-title { display:flex; align-items:center; gap:8px; margin:14px 0 7px; }
+.pj-shot-title svg { color:var(--pj-accent-ink); flex:none; }
+.screenshots-grid .pj-shot-title h2 { font-size:17px; font-weight:620; margin:0; }
+.feedback-page .feedback-intro h1 { font-weight:580; letter-spacing:-.03em; }
+.feedback-page .feedback-panel { border-color:var(--apple-system-gray4); box-shadow:none; }
+.pj-feedback-provider { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--apple-green-text); white-space:nowrap; }
+.feedback-page .feedback-privacy svg { color:var(--apple-green-text); }
+.invite-copy-heading { display:flex; align-items:center; gap:6px; }
+.invite-copy-heading > svg { color:var(--apple-teal-text); }
+.invite-copy-section .invite-copy-value { color:var(--apple-label); font-variant-numeric:tabular-nums; }
+.invite-field input, .invite-field textarea { border-color:var(--apple-system-gray4); background:var(--apple-secondary-background); transition:border-color .18s,background-color .18s; }
+.invite-field input:focus, .invite-field textarea:focus { border-color:var(--apple-link); background:var(--apple-elevated-background); }
+.invite-copy-notice[data-copied="true"] { color:var(--apple-green-text); }
+@media(max-width:767px),(pointer:coarse) and (max-width:1023px) {
+  .feedback-page .feedback-panel { border:0; box-shadow:none; }
+  .feedback-page .feedback-intro h1 { font-weight:650; }
+}
+@media(max-width:680px) {
+  .pj-download-heading { margin:24px auto 12px; }
+  .pj-download-heading h2 { font-size:20px; }
+  .pj-download-heading > span { max-width:110px; line-height:1.6; }
+  .pj-demo-launch-body { grid-template-columns:1fr; padding:24px 18px; gap:24px; }
+  .pj-demo-launch-copy .pj-demo-open { width:100%; }
+  .pj-demo-illustration { padding:26px 8px 18px; gap:6px; }
+  .pj-demo-illustration .pj-page-icon { width:48px; height:48px; }
+  .pj-demo-illustration .pj-page-icon svg { width:23px; height:23px; }
+}

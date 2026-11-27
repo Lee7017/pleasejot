@@ -8,11 +8,7 @@ title: 使用文档
 
 ## 从哪里开始
 
-- [下载安装](./install.md)：了解软件的分发方式。
-- [创建第一篇笔记](./getting-started.md)：了解基本操作流程。
-- [Markdown 编辑](./markdown.md)：熟悉常用 Markdown 语法。
-- [首页文件树](./folders.md)：管理多篇笔记与目录。
-- [局域网同步](./sync.md)：了解设备配对与主动同步流程。
+<DocLinkCards kind="guide" />
 
 ## 说明
 

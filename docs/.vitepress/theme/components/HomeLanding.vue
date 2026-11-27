@@ -66,7 +66,7 @@ onBeforeUnmount(() => {
     <section class="section-width preview-section" aria-label="软件界面布局示意">
       <div class="preview-browser" data-pj-reveal>
         <div class="browser-top">
-          <span class="browser-dots"><i /><i /><i /></span>
+          <span class="browser-dots" aria-hidden="true"><i /><i /><i /></span>
           <span>PleaseJot · 工作区界面</span>
           <PanelLeft :size="16" />
         </div>

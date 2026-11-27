@@ -50,6 +50,7 @@ onUnmounted(() => document.documentElement.classList.remove(immersiveClass))
           <h2>意见与建议</h2>
           <p>填写后将直接提交至腾讯问卷。</p>
         </div>
+        <span class="pj-feedback-provider"><ShieldCheck :size="15" aria-hidden="true"/> 腾讯问卷</span>
       </div>
 
       <div v-if="embedSrc" class="feedback-frame">

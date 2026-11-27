@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { Send, Copy, Check } from 'lucide-vue-next'
+import { Send, Copy, Check, MessageSquareText } from 'lucide-vue-next'
 
 const recipientPhone = '13231226535'
 const applicationTitle = 'PleaseJot 内测邀请码申请'
@@ -74,7 +74,7 @@ function onSmsClick(event: MouseEvent) {
 
     <section class="invite-panel" aria-label="短信邀请码申请">
       <div class="invite-copy-section">
-        <div class="invite-copy-heading"><strong>短信收件号码</strong></div>
+        <div class="invite-copy-heading"><MessageSquareText :size="15" aria-hidden="true"/><strong>短信收件号码</strong></div>
         <div class="invite-copy-row">
           <span class="invite-copy-value">{{ recipientPhone }}</span>
         </div>
@@ -116,7 +116,7 @@ function onSmsClick(event: MouseEvent) {
         <p class="invite-hint" v-if="isAppleMobile">iPhone / iPad：请先点击「复制短信内容」，打开短信应用后粘贴并发送。</p>
       </div>
 
-      <p class="invite-copy-notice" role="status" aria-live="polite">{{ copyNotice }}</p>
+      <p class="invite-copy-notice" :data-copied="copied === 'message'" role="status" aria-live="polite">{{ copyNotice }}</p>
     </section>
   </main>
 </template>
