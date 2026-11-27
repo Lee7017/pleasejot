@@ -11,6 +11,7 @@ import InviteRequest from './components/InviteRequest.vue'
 import BackToTop from './components/BackToTop.vue'
 import FeedbackForm from './components/FeedbackForm.vue'
 import './custom.css'
+import './styles/visual-refresh.css'
 
 export default {
   extends: DefaultTheme,

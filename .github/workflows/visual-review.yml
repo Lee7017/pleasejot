@@ -9,6 +9,13 @@ on:
       - 'scripts/visual-review.mjs'
       - 'scripts/layout-regression.mjs'
       - 'scripts/feedback-regression.mjs'
+      - 'scripts/motion-regression.mjs'
+      - '.github/workflows/visual-review.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/.vitepress/theme/**'
+      - 'scripts/motion-regression.mjs'
       - '.github/workflows/visual-review.yml'
   workflow_dispatch:
 
@@ -49,6 +56,7 @@ jobs:
             if curl -fsS -o /dev/null "${PREVIEW_URL}"; then break; fi
             sleep 1
           done
+          node scripts/motion-regression.mjs
           node scripts/visual-review.mjs
           node scripts/layout-regression.mjs
           node scripts/feedback-regression.mjs
