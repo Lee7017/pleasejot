@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import {
   ArrowRight, ArrowLeftRight, Download, Play, Folder, FolderOpen, FileText,
   NotebookPen, HardDrive, Monitor, Tablet, Smartphone, Network, FileAudio,
@@ -7,14 +8,50 @@ import {
   ChevronDown, ChevronRight, PanelLeft, MoreHorizontal, CheckSquare,
   Circle, FilePlus2, FolderPlus, Layers3, Maximize2, Square
 } from 'lucide-vue-next'
+const landing = ref<HTMLElement | null>(null)
+const motionReady = ref(false)
+const titleParts = ['让每份记录，', '成为自己的资产']
+let observer: IntersectionObserver | undefined
+let preference: MediaQueryList | undefined
+
+function stopMotion() {
+  observer?.disconnect()
+  observer = undefined
+  motionReady.value = false
+  landing.value?.querySelectorAll('.pj-entered').forEach(el => el.classList.remove('pj-entered'))
+}
+
+function startMotion() {
+  stopMotion()
+  if (!landing.value || preference?.matches) return
+  motionReady.value = true
+  if (!('IntersectionObserver' in window)) return
+  observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      entry.target.classList.add('pj-entered')
+      observer?.unobserve(entry.target)
+    }
+  }, { threshold: 0.15, rootMargin: '0px 0px -24px 0px' })
+  landing.value.querySelectorAll('[data-pj-reveal]').forEach(el => observer?.observe(el))
+}
+onMounted(() => {
+  preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+  startMotion()
+  preference.addEventListener('change', startMotion)
+})
+onBeforeUnmount(() => {
+  preference?.removeEventListener('change', startMotion)
+  stopMotion()
+})
 </script>
 
 <template>
-  <main class="landing">
+  <main ref="landing" class="landing" :class="{ 'pj-motion-ready': motionReady }">
     <section class="landing-hero section-width">
       <img class="hero-app-logo" :src="withBase('/logo.svg')" alt="PleaseJot 软件图标" width="112" height="112" />
       <p class="eyebrow"><span class="status-dot" /> 本地优先 · 自由记录 · 多端整理</p>
-      <h1>让每份记录，<br class="mobile-only" />成为自己的资产</h1>
+      <h1 aria-label="让每份记录，成为自己的资产"><span v-for="(part, group) in titleParts" :key="group" class="pj-title-part" aria-hidden="true"><span v-for="(char, index) in Array.from(part)" :key="index" class="pj-title-char" :style="{ '--pj-char-delay': (120 + (index + (group ? titleParts[0].length : 0)) * 30) + 'ms' }">{{ char }}</span></span></h1>
       <p class="hero-lead">以 Markdown 为基础，融合首页文件树、多格式附件与局域网同步。<br class="desktop-only" />在自己的设备中，建立清晰而自由的个人资料库。</p>
       <div class="hero-actions">
         <a class="xs-button primary" :href="withBase('/download/')"><Download :size="17" />下载 PleaseJot</a>
@@ -25,7 +62,7 @@ import {
     </section>
 
     <section class="section-width preview-section" aria-label="软件界面布局示意">
-      <div class="preview-browser">
+      <div class="preview-browser" data-pj-reveal>
         <div class="browser-top">
           <span class="browser-dots"><i /><i /><i /></span>
           <span>PleaseJot · 工作区界面</span>
@@ -63,7 +100,7 @@ import {
       <p class="figure-caption">界面布局示意 · 正式发布时替换为经过验收的真实应用截图 · <a :href="withBase('/screenshots/')">查看截图页面</a></p>
     </section>
 
-    <section class="section-intro section-width">
+    <section class="section-intro section-width" data-pj-reveal>
       <span class="eyebrow">三大核心亮点</span>
       <h2>专注记录，兼顾更多可能</h2>
       <p>同步、管理、内容扩展。构成 PleaseJot 的核心体验。</p>
@@ -76,7 +113,7 @@ import {
         <p>数据存储在自己的设备中，通过局域网进行手动同步。面向五端，让桌面、平板、手机各有优势，跨屏整理更方便。</p>
         <a class="text-link" :href="withBase('/guide/sync.html')">了解局域网同步 <ArrowRight :size="17"/></a>
       </div>
-      <div class="feature-visual visual-sync">
+      <div data-pj-reveal class="feature-visual visual-sync">
         <div class="sync-devices">
           <div class="sync-device"><Monitor :size="38"/><strong>大屏</strong><span>集中整理</span></div>
           <div class="sync-device"><Tablet :size="38"/><strong>中屏</strong><span>阅读与手写</span></div>
@@ -94,7 +131,7 @@ import {
         <p>目录层级清晰、文件组织直观。日常记录、学习资料与工作文档各归其位，洁癖与强迫症的福音。</p>
         <a class="text-link" :href="withBase('/guide/folders.html')">了解笔记管理 <ArrowRight :size="17"/></a>
       </div>
-      <div class="feature-visual visual-tree">
+      <div data-pj-reveal class="feature-visual visual-tree">
         <div class="tree-card">
           <div class="tree-heading"><FolderOpen :size="19"/><strong>我的文件</strong><span><FolderPlus :size="16"/><FilePlus2 :size="16"/></span></div>
           <div class="tree-list">
@@ -117,7 +154,7 @@ import {
         <p>在 Markdown 基础上扩展手写、音频、视频和 Word、Excel、PPT、PDF 等附件。Office 文档仅渲染查看，未来还将支持更多附件格式。</p>
         <a class="text-link" :href="withBase('/guide/attachments.html')">了解多格式附件 <ArrowRight :size="17"/></a>
       </div>
-      <div class="feature-visual visual-super">
+      <div data-pj-reveal class="feature-visual visual-super">
         <div class="super-document">
           <div class="super-title"><FileText :size="19"/><strong>学习笔记.md</strong><MoreHorizontal :size="17" class="right"/></div>
           <h3># 今天的学习资料</h3>
