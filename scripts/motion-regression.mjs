@@ -17,12 +17,8 @@ try {
       assert(await page.locator('.pj-title-char').first().evaluate(el => getComputedStyle(el).animationName === 'pj-char-in'), 'title animation missing')
       await page.waitForTimeout(1200)
       await page.screenshot({ path: output + '/' + width + '-' + colorScheme + '-home.png', animations: 'disabled' })
-      for (const feature of await page.locator('.feature-visual').all()) {
-        await feature.scrollIntoViewIfNeeded()
-        await feature.evaluate(el => el.scrollIntoView({block:'center',behavior:'instant'}))
-        await feature.locator('xpath=self::*[contains(@class,"pj-entered")]').waitFor()
-        await page.waitForTimeout(800)
-      }
+      await page.locator('.section-intro').scrollIntoViewIfNeeded()
+      await page.waitForTimeout(800)
       await page.screenshot({ path: output + '/' + width + '-' + colorScheme + '-feature.png', animations: 'disabled' })
       assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 2), 'horizontal overflow ' + width)
       await page.emulateMedia({ reducedMotion: 'reduce' })

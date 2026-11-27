@@ -10,6 +10,7 @@ on:
       - 'scripts/layout-regression.mjs'
       - 'scripts/feedback-regression.mjs'
       - 'scripts/motion-regression.mjs'
+      - 'scripts/complex-motion-regression.mjs'
       - '.github/workflows/visual-review.yml'
   pull_request:
     branches: [main]
@@ -56,6 +57,7 @@ jobs:
             if curl -fsS -o /dev/null "${PREVIEW_URL}"; then break; fi
             sleep 1
           done
+          node scripts/complex-motion-regression.mjs
           node scripts/motion-regression.mjs
           node scripts/visual-review.mjs
           node scripts/layout-regression.mjs

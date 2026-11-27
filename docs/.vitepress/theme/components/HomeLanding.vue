@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import FeatureStack from './FeatureStack.vue'
+import FeatureCarousel from './FeatureCarousel.vue'
 import {
   ArrowRight, ArrowLeftRight, Download, Play, Folder, FolderOpen, FileText,
   NotebookPen, HardDrive, Monitor, Tablet, Smartphone, Network, FileAudio,
@@ -106,14 +108,15 @@ onBeforeUnmount(() => {
       <p>同步、管理、内容扩展。构成 PleaseJot 的核心体验。</p>
     </section>
 
-    <section class="feature-section section-width">
+    <FeatureStack>
+    <section class="feature-section section-width" data-stack-label="01 / 局域网同步">
       <div class="feature-copy">
         <p class="feature-index">01 <span>/</span> 局域网同步</p>
         <h2>数据局域网同步，<br/>打造你的个人资产。</h2>
         <p>数据存储在自己的设备中，通过局域网进行手动同步。面向五端，让桌面、平板、手机各有优势，跨屏整理更方便。</p>
         <a class="text-link" :href="withBase('/guide/sync.html')">了解局域网同步 <ArrowRight :size="17"/></a>
       </div>
-      <div data-pj-reveal class="feature-visual visual-sync">
+      <div class="feature-visual visual-sync">
         <div class="sync-devices">
           <div class="sync-device"><Monitor :size="38"/><strong>大屏</strong><span>集中整理</span></div>
           <div class="sync-device"><Tablet :size="38"/><strong>中屏</strong><span>阅读与手写</span></div>
@@ -124,14 +127,14 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="feature-section section-width reverse">
+    <section class="feature-section section-width reverse" data-stack-label="02 / 文件树管理">
       <div class="feature-copy">
         <p class="feature-index">02 <span>/</span> 文件树管理</p>
         <h2>首页文件树，<br/>多笔记管理一目了然。</h2>
         <p>目录层级清晰、文件组织直观。日常记录、学习资料与工作文档各归其位，洁癖与强迫症的福音。</p>
         <a class="text-link" :href="withBase('/guide/folders.html')">了解笔记管理 <ArrowRight :size="17"/></a>
       </div>
-      <div data-pj-reveal class="feature-visual visual-tree">
+      <div class="feature-visual visual-tree">
         <div class="tree-card">
           <div class="tree-heading"><FolderOpen :size="19"/><strong>我的文件</strong><span><FolderPlus :size="16"/><FilePlus2 :size="16"/></span></div>
           <div class="tree-list">
@@ -147,14 +150,14 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="feature-section section-width">
+    <section class="feature-section section-width" data-stack-label="03 / Super MarkDown">
       <div class="feature-copy">
         <p class="feature-index">03 <span>/</span> Super MarkDown</p>
         <h2>Super MarkDown，<br/>让一篇笔记容纳更多内容。</h2>
         <p>在 Markdown 基础上扩展手写、音频、视频和 Word、Excel、PPT、PDF 等附件。Office 文档仅渲染查看，未来还将支持更多附件格式。</p>
         <a class="text-link" :href="withBase('/guide/attachments.html')">了解多格式附件 <ArrowRight :size="17"/></a>
       </div>
-      <div data-pj-reveal class="feature-visual visual-super">
+      <div class="feature-visual visual-super">
         <div class="super-document">
           <div class="super-title"><FileText :size="19"/><strong>学习笔记.md</strong><MoreHorizontal :size="17" class="right"/></div>
           <h3># 今天的学习资料</h3>
@@ -174,5 +177,7 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    </FeatureStack>
+    <FeatureCarousel />
   </main>
 </template>

@@ -74,7 +74,7 @@ body, .dark body { background: var(--vp-c-bg); font-size: 15px; }
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 .VPDocAsideOutline.has-outline {
-  background: transparent; box-shadow: none; border: 0; padding: 0;
+  background: transparent; box-shadow: none; border: 0; padding: 18px;
 }
 .vp-doc h1 { font-size: clamp(28px,3vw,36px); font-weight: 650; letter-spacing: -.025em; }
 .vp-doc h2 { font-size: 25px; font-weight: 650; letter-spacing: -.02em; }
@@ -93,8 +93,8 @@ body, .dark body { background: var(--vp-c-bg); font-size: 15px; }
 .hero-lead { font-size: clamp(15px,1.6vw,19px); line-height: 1.75; max-width: 780px; }
 .eyebrow { font-weight: 600; padding: 5px 11px; background: var(--pj-surface); border: 0; box-shadow: none; }
 .hero-actions { gap: 12px; margin-top: 8px; }
-.xs-button { min-height: 44px; border-radius: 12px; font-size: 14px; font-weight: 600; }
-.landing .hero-actions .xs-button { border-radius: 999px; padding-inline: 24px; }
+.xs-button { min-height: 46px; border-radius: 12px; font-size: 14px; font-weight: 600; }
+.landing .hero-actions .xs-button { border-radius: 12px; padding-inline: 24px; }
 .landing .hero-actions .xs-button.primary { box-shadow: none; }
 .landing .hero-actions .xs-button.secondary {
   background: linear-gradient(var(--pj-panel),var(--pj-panel)) padding-box,
@@ -134,6 +134,7 @@ body, .dark body { background: var(--vp-c-bg); font-size: 15px; }
   .page-design { padding: 40px 17px 64px; }
   .page-intro { margin-bottom: 30px; }
   .invite-page { padding-top: 28px; }
+  .invite-sms-actions .xs-button { min-height: 44px; border-radius: 10px; }
 }
 /* Animations are opt-in to the landing component. SSR and no-JS content stay visible. */
 @keyframes pj-char-in {
