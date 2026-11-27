@@ -127,6 +127,15 @@ try{
      const response=await page.goto(new URL('demo/app.html',origin).href,{waitUntil:'domcontentloaded',timeout:45000})
      check(response?.ok(),'React HTML '+response?.status())
      await page.waitForFunction(()=>!!document.querySelector('#root')?.children.length,{timeout:20000})
+     // Mounting the splash screen is not proof that the workspace loaded.
+     await page.screenshot({path:join(output,'react-mock-startup-'+width+'.png'),animations:'disabled'})
+     await page.waitForFunction(()=>!document.querySelector('[data-entry-state]') && !!document.querySelector('#root')?.children.length,{timeout:30000})
+       .catch(async error=>{
+         await page.screenshot({path:join(output,'react-mock-blocked-'+width+'.png'),animations:'disabled'})
+         throw new Error('Mock did not leave startup: '+await page.locator('#root').innerText().catch(()=>String(error)))
+       })
+     check(!(await page.locator('.host-mismatch').count()),'wrong app host')
+     await page.waitForTimeout(1000)
      check(await page.locator('.VPNavBar').count()===0,'Vue navigation leaked into React')
      const info=await page.request.get(new URL('demo/pleasejot-build.json',origin).href)
      check(info.ok(),'missing mock metadata')
