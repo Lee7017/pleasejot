@@ -110,7 +110,8 @@ body, .dark body { background: var(--vp-c-bg); font-size: 15px; }
 .section-intro h2, .page-intro h1 { font-weight: 550; }
 .section-intro h2 { font-size: clamp(30px,3.5vw,44px); }
 .feature-section { gap: clamp(28px,5vw,60px); padding: var(--pj-section-space) var(--pj-gutter); }
-.feature-copy h2 { font-size: clamp(28px,3.2vw,42px); font-weight: 550; line-height: 1.35; margin-bottom: 18px; }
+.feature-copy h2 { font-size: clamp(28px,3.2vw,42px); font-weight: 550; line-height: 1.35; margin-bottom: 18px; text-wrap: balance; }
+.pj-stack-active [data-stack-label="03 / Super MarkDown"] .feature-copy h2 { font-size: clamp(29px, 2.7vw, 36px); }
 .feature-copy>p:not(.feature-index) { font-size: 16px; line-height: 1.85; }
 .feature-index { margin-bottom: 18px !important; font-weight: 600; }
 .feature-visual { background: var(--pj-surface); border-radius: var(--pj-radius); box-shadow: none; }

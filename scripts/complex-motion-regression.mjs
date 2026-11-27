@@ -36,6 +36,20 @@ try {
         const m=await metrics()
         assert(m.y.every((v,i)=>Math.abs(v-expected[i])<3), 'stack '+name+': '+JSON.stringify(m))
         assert(Math.abs(m.sticky-96)<3, 'sticky position '+JSON.stringify(m))
+        if (name === 'last') {
+          const layout = await page.locator('.feature-section').last().locator('h2').evaluate(el => {
+            const node = el.lastChild
+            if (!node || node.nodeType !== Node.TEXT_NODE) return { lines: [], text: el.textContent }
+            const lines = new Map()
+            for (let i=0; i<node.textContent.length; i++) {
+              const r=document.createRange(); r.setStart(node,i); r.setEnd(node,i+1)
+              const y=Math.round(r.getBoundingClientRect().top)
+              lines.set(y,(lines.get(y)||'')+node.textContent[i])
+            }
+            return { lines: [...lines.values()].map(s=>s.trim()).filter(Boolean), text: el.textContent }
+          })
+          assert(layout.lines.length>0 && (layout.lines.length===1 || layout.lines.at(-1).length>=4),'orphaned feature title: '+JSON.stringify(layout))
+        }
         await capture(page,width+'-'+colorScheme+'-stack-'+name)
       }
     } else {

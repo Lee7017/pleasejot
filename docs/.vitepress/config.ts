@@ -91,6 +91,7 @@ export default defineConfig({
     },
     outline: { level: [2, 3], label: '本页目录' },
     docFooter: { prev: '上一篇', next: '下一篇' },
+    lastUpdated: { text: '最后更新', formatOptions: { dateStyle: 'short', timeStyle: 'short' } },
     returnToTopLabel: '返回顶部',
     sidebarMenuLabel: '目录',
     footer: { copyright: 'Copyright © 2026 PleaseJot. All rights reserved.' }
