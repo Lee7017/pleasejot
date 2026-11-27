@@ -1,6 +1,8 @@
-/* Keep the brand monochrome. Apply system hues to purposeful content and
-   status, using light/dark contrast-safe foregrounds on subtle tinted surfaces. */
+/* No fixed brand hue. Black and white are the base; seven spectral hues
+   are accents for function, status and motion. VitePress's brand variables
+   are its API names, not a designated brand color. */
 :root {
+  --pj-rainbow: var(--apple-system-red), var(--apple-system-orange), var(--apple-system-yellow), var(--apple-system-green), var(--apple-system-cyan), var(--apple-system-blue), var(--apple-system-purple), var(--apple-system-red);
   --vp-c-divider: var(--apple-separator);
   --vp-c-gutter: var(--apple-system-gray5);
   --vp-c-brand-1: var(--apple-label);
@@ -28,7 +30,7 @@
 a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, .xs-button:focus-visible { outline-color: var(--apple-link); }
 .status-dot { background: var(--apple-system-green); opacity: 1; }
 .preview-file-row.current, .tree-line.selected { background: color-mix(in srgb, var(--apple-system-blue) 12%, var(--apple-secondary-background)); color: var(--apple-link); }
-.preview-file-row .lucide-folder, .preview-files-title .lucide-folder-open, .tree-line .lucide-folder, .tree-line .lucide-folder-open, .tree-heading .lucide-folder-open { color: var(--apple-orange-text); }
+.preview-file-row .lucide-folder, .preview-files-title .lucide-folder-open, .tree-line .lucide-folder, .tree-line .lucide-folder-open, .tree-heading .lucide-folder-open { color: var(--apple-yellow-text); }
 .task-line .complete { color: var(--apple-green-text); }
 .drawing-top .lucide-pencil-line, .drawing-card > svg { color: var(--apple-purple-text); }
 .visual-sync { background: color-mix(in srgb,var(--apple-system-blue) 10%,var(--apple-secondary-background)); }

@@ -98,7 +98,7 @@ body, .dark body { background: var(--vp-c-bg); font-size: 15px; }
 .landing .hero-actions .xs-button.primary { box-shadow: none; }
 .landing .hero-actions .xs-button.secondary {
   background: linear-gradient(var(--pj-panel),var(--pj-panel)) padding-box,
-    linear-gradient(90deg,var(--apple-system-pink),var(--apple-system-purple),var(--apple-system-blue),var(--apple-system-teal),var(--apple-system-pink)) border-box;
+    linear-gradient(90deg,var(--pj-rainbow)) border-box;
   background-size: 100% 100%, 200% 100%;
   border: 1.5px solid transparent;
   box-shadow: none;

@@ -38,6 +38,7 @@
   --apple-placeholder: var(--apple-tertiary-label);
   /* Contrast-safe Web text derived from the corresponding system hue. */
   --apple-link: #0059c9;
+  --apple-yellow-text: #805800;
   --apple-green-text: #006b2c;
   --apple-red-text: #b51229;
   --apple-orange-text: #924000;
@@ -79,6 +80,7 @@
   --apple-tertiary-fill: rgba(118,118,128,.24);
   --apple-placeholder: var(--apple-tertiary-label);
   --apple-link: #5cb8ff;
+  --apple-yellow-text: #fedf43;
   --apple-green-text: #4ad968;
   --apple-red-text: #ff6165;
   --apple-orange-text: #ffa056;

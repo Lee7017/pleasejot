@@ -22,6 +22,16 @@ try {
   assert(new Set(colors.features).size===3,'feature colors missing '+JSON.stringify(colors))
   assert(new Set(colors.cards).size===3,'carousel colors missing '+JSON.stringify(colors))
   assert(colors.body===(scheme==='dark'?'rgb(0, 0, 0)':'rgb(255, 255, 255)'),'background '+colors.body)
+  const accents=await page.evaluate(()=>({
+    gradient:getComputedStyle(document.querySelector('.landing .hero-actions .secondary')).backgroundImage,
+    button:getComputedStyle(document.querySelector('.landing .hero-actions .primary')).backgroundColor
+  }))
+  assert(accents.button===(scheme==='dark'?'rgb(255, 255, 255)':'rgb(0, 0, 0)'),'main action must remain monochrome')
+  for(const hue of ['red','orange','yellow','green','cyan','blue','purple']){
+    const h=expected[hue][scheme==='dark'?1:0]
+    const rgb='rgb('+[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)).join(', ')+')'
+    assert(accents.gradient.includes(rgb)||accents.gradient.toLowerCase().includes(h),'rainbow missing '+hue+' '+accents.gradient)
+  }
   await capture(width+'-'+scheme+'-home')
   for(const [i,el] of (await page.locator('.feature-visual').all()).entries()){await el.scrollIntoViewIfNeeded();await capture(width+'-'+scheme+'-feature-'+i)}
   await page.locator('.pj-carousel').scrollIntoViewIfNeeded();await capture(width+'-'+scheme+'-carousel')
