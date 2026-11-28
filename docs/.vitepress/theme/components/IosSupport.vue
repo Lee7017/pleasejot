@@ -261,8 +261,6 @@ onMounted(loadSnapshot)
 .ios-support-card {
   padding: 25px 0 23px;
   border: 0;
-  border-top: 1px solid var(--xs-rule);
-  border-bottom: 1px solid var(--xs-rule);
   border-radius: 0;
   background: transparent;
   box-shadow: none;

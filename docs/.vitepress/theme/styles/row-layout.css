@@ -300,10 +300,9 @@
 }
 .download-note {
   max-width: 910px;
-  margin: 22px auto 0;
+  margin: 12px auto 0;
   padding: 22px 0;
   border: 0;
-  border-top: 1px solid var(--pj-hairline);
   border-bottom: 1px solid var(--pj-hairline);
   border-radius: 0;
   background: transparent;
