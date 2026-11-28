@@ -89,8 +89,8 @@ URL 空缺时按钮保持禁用，不会生成假的下载链接。iOS/iPadOS �
 | 内容 | 位置 |
 |---|---|
 | 首页布局与三大亮点 | `docs/.vitepress/theme/components/HomeLanding.vue` |
-| 样式与响应式 | `docs/.vitepress/theme/custom.css` |
-| 下载卡片 | `docs/.vitepress/theme/components/DownloadCards.vue` |
+| 样式与响应式 | `docs/.vitepress/theme/custom.css`、`docs/.vitepress/theme/styles/row-layout.css` |
+| 下载平台列表 | `docs/.vitepress/theme/components/DownloadCards.vue` |
 | Release 下载地址和状态 | `docs/.vitepress/theme/data/releases.ts` |
 | 顶部导航、文档目录、站点标题和版权声明 | `docs/.vitepress/config.ts` |
 | 使用文档 | `docs/guide/*.md` |
