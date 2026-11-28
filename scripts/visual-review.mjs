@@ -404,14 +404,27 @@ for (const c of [
       failures.push(c.label + ': primary home download/demo links are missing')
   }
   if (c.label === 'download-dark-desktop') {
-    const cards = page.locator('.download-card')
-    const heights = await cards.evaluateAll(els => els.map(el => Math.round(el.getBoundingClientRect().height)))
-    const actionRects = await page.locator('.download-action').evaluateAll(els => els.map(el => ({
-      y: Math.round(el.getBoundingClientRect().top), height: Math.round(el.getBoundingClientRect().height)
-    })))
-    if (Math.abs(heights[0] - heights[1]) > 2 || Math.abs(actionRects[0].y - actionRects[1].y) > 2)
-      failures.push('download-desktop: card actions not aligned')
-    findings.push({ page: c.label, test: 'download-card-alignment', heights, actionRects })
+    const rows = await page.evaluate(() => {
+      const grid = document.querySelector('.download-grid')
+      const items = [...(grid?.querySelectorAll(':scope > .download-card:not(.ios-support-card)') || [])]
+      return {
+        display: grid ? getComputedStyle(grid).display : '',
+        direction: grid ? getComputedStyle(grid).flexDirection : '',
+        count: items.length,
+        rows: items.map(el => ({
+          background: getComputedStyle(el).backgroundColor,
+          radius: getComputedStyle(el).borderRadius,
+          actionCount: el.querySelectorAll('.download-action').length,
+          actionHeight: Math.round(el.querySelector('.download-action')?.getBoundingClientRect().height || 0),
+          borderBottom: getComputedStyle(el).borderBottomStyle
+        }))
+      }
+    })
+    if (rows.display !== 'flex' || rows.direction !== 'column' || rows.count !== 3 ||
+        rows.rows.some(row => row.background !== 'rgba(0, 0, 0, 0)' ||
+          row.radius !== '0px' || row.actionCount !== 1 || row.borderBottom !== 'solid'))
+      failures.push('download-desktop: platform downloads are not displayed as flat list rows ' + JSON.stringify(rows))
+    findings.push({ page: c.label, test: 'download-row-layout', ...rows })
   }
   if (['home-dark-desktop','home-light-mobile','download-dark-desktop','demo-dark-desktop',
     'screenshots-dark-desktop','guide-dark-desktop','changelog-dark-desktop'].includes(c.label))

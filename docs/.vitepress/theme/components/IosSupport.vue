@@ -256,4 +256,51 @@ onMounted(loadSnapshot)
   .ios-danmaku-track { width:max-content; animation:none; transform:none; }
   .ios-danmaku-batch:not(:first-child) { display:none; }
 }
+
+/* 以整行信息和文字轨道代替密集的小卡片。 */
+.ios-support-card {
+  padding: 25px 0 23px;
+  border: 0;
+  border-top: 1px solid var(--xs-rule);
+  border-bottom: 1px solid var(--xs-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.ios-card-icon {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.ios-danmaku-panel {
+  height: 124px;
+  border: 0;
+  border-top: 1px solid var(--xs-rule);
+  border-bottom: 1px solid var(--xs-rule);
+  border-radius: 0;
+  background: transparent;
+}
+.ios-danmaku-panel::before,
+.ios-danmaku-panel::after { display: none; }
+.ios-danmaku-track,
+.ios-danmaku-batch { gap: 12px; }
+.ios-danmaku-chip {
+  height: 32px;
+  padding: 0 3px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.ios-danmaku-name { font-weight: 620; }
+.ios-danmaku-amount { font-size: 10px; }
+@media (max-width:680px) {
+  .ios-support-card { padding: 21px 0; }
+  .ios-danmaku-panel { height: 105px; }
+}
 </style>

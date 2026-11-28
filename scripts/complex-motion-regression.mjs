@@ -1,80 +1,93 @@
 import { chromium } from 'playwright'
 import { mkdirSync } from 'node:fs'
+import path from 'node:path'
+
 const origin = process.env.PREVIEW_URL || 'http://127.0.0.1:4173/pleasejot/'
 const output = 'pleasejot-visual-review/complex-motion'
 mkdirSync(output, { recursive: true })
-const browser = await chromium.launch()
-const assert = (ok, msg) => { if (!ok) throw new Error(msg) }
-async function capture(page, name) {
-  await page.screenshot({ path: output + '/' + name + '.png', animations: 'disabled' })
-  const jpg = await page.screenshot({ type: 'jpeg', quality: 48, animations: 'disabled' })
-  const data = jpg.toString('base64')
-  console.log('COMPLEX_IMAGE_START:' + name)
-  for (let i = 0; i < data.length; i += 1600) console.log('COMPLEX_IMAGE_PART:' + data.slice(i, i+1600))
-  console.log('COMPLEX_IMAGE_END:' + name)
-}
+const browser = await chromium.launch({ headless: true })
+const assert = (ok, message) => { if (!ok) throw new Error(message) }
+
 try {
-  for (const width of [390, 1440]) for (const colorScheme of ['light','dark']) {
-    const page = await browser.newPage({viewport:{width,height:900},colorScheme,reducedMotion:'no-preference'})
-    const errors=[]
-    page.on('pageerror', e=>errors.push(e.message))
-    await page.goto(origin,{waitUntil:'networkidle'})
-    await page.locator('.pj-carousel-viewport.is-ready').waitFor()
-    await page.waitForTimeout(1100)
-    await capture(page, width+'-'+colorScheme+'-home')
-    if (width >= 1100) {
-      await page.locator('.pj-stack-active').waitFor()
-      const metrics = async () => page.locator('.pj-stack').evaluate(el=>({
-        top:el.getBoundingClientRect().top+scrollY-96,
-        y:[...el.querySelectorAll('.feature-section')].map(c=>new DOMMatrixReadOnly(getComputedStyle(c).transform).m42),
-        sticky:el.querySelector('.pj-stack-stage').getBoundingClientRect().top
-      }))
-      const start=await metrics()
-      for (const [name,travel,expected] of [['first',0,[0,524,1048]],['middle',484,[0,40,564]],['last',968,[0,40,80]]]) {
-        await page.evaluate(y=>scrollTo({top:y,behavior:'instant'}),start.top+travel)
-        await page.waitForTimeout(200)
-        const m=await metrics()
-        assert(m.y.every((v,i)=>Math.abs(v-expected[i])<3), 'stack '+name+': '+JSON.stringify(m))
-        assert(Math.abs(m.sticky-96)<3, 'sticky position '+JSON.stringify(m))
-        if (name === 'last') {
-          const layout = await page.locator('.feature-section').last().locator('h2').evaluate(el => {
-            const node = el.lastChild
-            if (!node || node.nodeType !== Node.TEXT_NODE) return { lines: [], text: el.textContent }
-            const lines = new Map()
-            for (let i=0; i<node.textContent.length; i++) {
-              const r=document.createRange(); r.setStart(node,i); r.setEnd(node,i+1)
-              const y=Math.round(r.getBoundingClientRect().top)
-              lines.set(y,(lines.get(y)||'')+node.textContent[i])
-            }
-            return { lines: [...lines.values()].map(s=>s.trim()).filter(Boolean), text: el.textContent }
-          })
-          assert(layout.lines.length>0 && (layout.lines.length===1 || layout.lines.at(-1).length>=4),'orphaned feature title: '+JSON.stringify(layout))
+  for (const width of [320, 390, 768, 1440]) {
+    for (const colorScheme of ['light', 'dark']) {
+      const page = await browser.newPage({
+        viewport: { width, height: 900 },
+        colorScheme,
+        reducedMotion: 'no-preference'
+      })
+      const errors = []
+      page.on('pageerror', error => errors.push(error.message))
+      await page.goto(origin, { waitUntil: 'networkidle' })
+      await page.locator('.platform-strip').waitFor()
+      await page.waitForTimeout(250)
+
+      const layout = await page.evaluate(() => {
+        const features = [...document.querySelectorAll('.feature-section')]
+        const platformItems = [...document.querySelectorAll('.platform-item')]
+        const style = element => {
+          const css = getComputedStyle(element)
+          return {
+            background: css.backgroundColor,
+            radius: css.borderRadius,
+            shadow: css.boxShadow,
+            borderWidth: css.borderTopWidth
+          }
         }
-        await capture(page,width+'-'+colorScheme+'-stack-'+name)
-      }
-    } else {
-      assert(await page.locator('.pj-stack-active').count()===0,'mobile must not pin stack')
-      await page.locator('.feature-section').last().scrollIntoViewIfNeeded()
-      await capture(page,width+'-'+colorScheme+'-static-feature')
+        const flatSurfaces = [
+          ...document.querySelectorAll('.feature-visual, .sync-device, .tree-card, .super-document, .super-cards > div')
+        ].map(style)
+        return {
+          featureCount: features.length,
+          featureTops: features.map(element => Math.round(element.getBoundingClientRect().top + scrollY)),
+          platformCount: platformItems.length,
+          platformText: document.querySelector('.platform-strip')?.textContent || '',
+          stackCount: document.querySelectorAll('.pj-stack, .pj-stack-active').length,
+          carouselCount: document.querySelectorAll('.pj-carousel').length,
+          overflow: Math.max(0, document.documentElement.scrollWidth - innerWidth),
+          flatSurfaces,
+          platformColumns: getComputedStyle(document.querySelector('.platform-strip-list')).gridTemplateColumns
+        }
+      })
+
+      assert(layout.featureCount === 3, 'expected three feature sections: ' + JSON.stringify(layout))
+      assert(layout.platformCount === 5, 'expected five platform entries: ' + JSON.stringify(layout))
+      assert(/Windows/.test(layout.platformText) && /macOS/.test(layout.platformText) &&
+        /Android/.test(layout.platformText) && /iOS/.test(layout.platformText) &&
+        /iPadOS/.test(layout.platformText), 'platform labels are incomplete')
+      assert(layout.stackCount === 0, 'obsolete stacked feature cards remain')
+      assert(layout.carouselCount === 0, 'obsolete platform carousel remains')
+      assert(layout.overflow <= 2, 'horizontal overflow at ' + width + ': ' + layout.overflow)
+      assert(layout.featureTops.every((top, index, all) => index === 0 || top > all[index - 1]),
+        'feature sections are not in normal document flow: ' + JSON.stringify(layout.featureTops))
+      assert(layout.flatSurfaces.length >= 10, 'feature examples are missing')
+      assert(layout.flatSurfaces.every(surface =>
+        surface.background === 'rgba(0, 0, 0, 0)' &&
+        surface.radius === '0px' &&
+        surface.shadow === 'none' &&
+        surface.borderWidth === '0px'
+      ), 'small feature panels are still styled as cards: ' + JSON.stringify(layout.flatSurfaces))
+
+      await page.screenshot({
+        path: path.join(output, width + '-' + colorScheme + '-home.png'),
+        fullPage: true,
+        animations: 'disabled'
+      })
+      await page.locator('.section-intro').scrollIntoViewIfNeeded()
+      await page.screenshot({
+        path: path.join(output, width + '-' + colorScheme + '-features.png'),
+        animations: 'disabled'
+      })
+
+      await page.emulateMedia({ reducedMotion: 'reduce' })
+      await page.waitForFunction(() => !document.querySelector('.pj-motion-ready'))
+      assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 2),
+        'horizontal overflow after reduced motion')
+      assert(errors.length === 0, 'JavaScript errors: ' + errors.join(' | '))
+      await page.close()
     }
-    const carousel=page.locator('.pj-carousel')
-    await carousel.scrollIntoViewIfNeeded()
-    await page.getByRole('button',{name:'暂停自动轮播'}).click()
-    const current=Number(await carousel.getAttribute('data-active-index'))
-    await page.getByRole('button',{name:'下一张卡片'}).click()
-    await page.waitForTimeout(1950)
-    assert(Number(await carousel.getAttribute('data-active-index'))===(current+1)%3,'next carousel card incorrect')
-    await capture(page,width+'-'+colorScheme+'-carousel')
-    await page.getByRole('button',{name:'上一张卡片'}).click()
-    await page.waitForTimeout(1950)
-    assert(Number(await carousel.getAttribute('data-active-index'))===current,'previous carousel card incorrect')
-    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth<=2),'horizontal overflow')
-    await page.emulateMedia({reducedMotion:'reduce'})
-    await page.waitForFunction(()=>!document.querySelector('.pj-stack-active'))
-    await page.waitForFunction(()=>!document.querySelector('.pj-carousel-autoplay'))
-    assert(await page.getByRole('button',{name:'继续自动轮播'}).count()===0,'reduced motion autoplay control visible')
-    assert(errors.length===0,errors.join(' | '))
-    await page.close()
   }
   console.log('COMPLEX_MOTION_REGRESSION_PASSED')
-} finally { await browser.close() }
+} finally {
+  await browser.close()
+}
