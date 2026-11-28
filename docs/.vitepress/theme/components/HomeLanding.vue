@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import FeatureStack from './FeatureStack.vue'
-import FeatureCarousel from './FeatureCarousel.vue'
 import {
   ArrowRight, ArrowLeftRight, Download, Play, Folder, FolderOpen, FileText,
-  NotebookPen, HardDrive, Monitor, Tablet, Smartphone, Network, FileAudio,
+  NotebookPen, HardDrive, Monitor, Laptop, Tablet, Smartphone, Network, FileAudio,
   FileVideo, FileSpreadsheet, Presentation, FileType, PencilLine, Check,
   ChevronDown, ChevronRight, PanelLeft, MoreHorizontal, CheckSquare,
   Circle, FilePlus2, FolderPlus, Layers3, Maximize2, Square
@@ -108,8 +106,7 @@ onBeforeUnmount(() => {
       <p>同步、管理、内容扩展。构成 PleaseJot 的核心体验。</p>
     </section>
 
-    <FeatureStack>
-    <section class="feature-section section-width" data-stack-label="01 / 局域网同步">
+    <section class="feature-section section-width">
       <div class="feature-copy">
         <p class="feature-index">01 <span>/</span> 局域网同步</p>
         <h2>数据局域网同步，<br/>打造你的个人资产。</h2>
@@ -127,7 +124,7 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="feature-section section-width reverse" data-stack-label="02 / 文件树管理">
+    <section class="feature-section section-width reverse">
       <div class="feature-copy">
         <p class="feature-index">02 <span>/</span> 文件树管理</p>
         <h2>首页文件树，<br/>多笔记管理一目了然。</h2>
@@ -150,7 +147,7 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="feature-section section-width" data-stack-label="03 / Super MarkDown">
+    <section class="feature-section section-width">
       <div class="feature-copy">
         <p class="feature-index">03 <span>/</span> Super MarkDown</p>
         <h2>Super MarkDown，<br/>让一篇笔记容纳更多内容。</h2>
@@ -177,7 +174,19 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    </FeatureStack>
-    <FeatureCarousel />
+    <section class="platform-strip section-width" aria-label="多端使用场景">
+      <div class="platform-strip-heading">
+        <span class="eyebrow">多端体验</span>
+        <h2>不同设备，同一份记录</h2>
+        <p>围绕桌面、平板与手机的使用场景设计，实际开放平台以发布信息为准。</p>
+      </div>
+      <div class="platform-strip-list">
+        <div class="platform-item"><Monitor :size="25" stroke-width="1.55" /><span>Windows</span></div>
+        <div class="platform-item"><Laptop :size="25" stroke-width="1.55" /><span>macOS</span></div>
+        <div class="platform-item"><Smartphone :size="25" stroke-width="1.55" /><span>Android</span></div>
+        <div class="platform-item"><Smartphone :size="25" stroke-width="1.55" /><span>iOS</span></div>
+        <div class="platform-item"><Tablet :size="25" stroke-width="1.55" /><span>iPadOS</span></div>
+      </div>
+    </section>
   </main>
 </template>

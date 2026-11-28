@@ -2,14 +2,14 @@
 
 本项目依据对话中确认的官网结构，实现可编辑、可部署的 VitePress 网站。它不是 ChatGPT 内置组件的直接代码导出，而是用真实 Vue 单文件组件重新实现该布局。
 
-## 视觉风格 · 黑白玻璃拟态
+## 视觉风格 · 浅色极简分栏
 
-本版本已统一改成**浅色背景 + 黑白玻璃拟态**：银灰层次渐变、半透明磨砂导航与侧边栏、白色玻璃卡片、黑色主按钮、细边框和柔和阴影。下载卡片、Web Mock 占位页、截图页、教程正文、更新日志及关于页面都使用同一套 CSS 变量；不是只给首页换背景。
+官网采用浅灰背景、清晰的白色内容区、细分割线和整行列表组织信息。首页功能介绍、软件下载、文档入口、截图与演示说明优先使用连续区块和列表行，减少重复的小卡片；只保留必要的大型软件界面预览和主要操作区域。整体以黑白灰为主，状态和功能图标使用克制的颜色提示。
 
-- 默认浅色；保留完整的黑白深色变量，VitePress 原生外观切换仍可使用。
-- 为阅读提供清晰对比度；代码块和教程正文不做过度透明。
-- 支持较小屏幕和系统减少动画设置；保持页面路径、文章目录和版本导航不变。网站搜索入口已按需求移除。
-- 样式集中在 `docs/.vitepress/theme/custom.css`，详细规则见 `DESIGN-GLASS.md`。
+- 默认跟随系统浅色 / 深色外观；保留 VitePress 原生导航、目录和响应式交互。
+- 文字、表格和代码块保持清晰对比度，不使用影响阅读的半透明正文面板。
+- 支持手机、平板和桌面，并尊重系统减少动画设置；保持页面路径、文章目录和版本导航不变。网站搜索入口已按需求移除。
+- 基础主题样式位于 `docs/.vitepress/theme/custom.css`，列表化排版规则位于 `docs/.vitepress/theme/styles/row-layout.css`。
 
 ## 设计与边界
 
@@ -89,8 +89,8 @@ URL 空缺时按钮保持禁用，不会生成假的下载链接。iOS/iPadOS �
 | 内容 | 位置 |
 |---|---|
 | 首页布局与三大亮点 | `docs/.vitepress/theme/components/HomeLanding.vue` |
-| 样式与响应式 | `docs/.vitepress/theme/custom.css` |
-| 下载卡片 | `docs/.vitepress/theme/components/DownloadCards.vue` |
+| 样式与响应式 | `docs/.vitepress/theme/custom.css`、`docs/.vitepress/theme/styles/row-layout.css` |
+| 下载平台列表 | `docs/.vitepress/theme/components/DownloadCards.vue` |
 | Release 下载地址和状态 | `docs/.vitepress/theme/data/releases.ts` |
 | 顶部导航、文档目录、站点标题和版权声明 | `docs/.vitepress/config.ts` |
 | 使用文档 | `docs/guide/*.md` |

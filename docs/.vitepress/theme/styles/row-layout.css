@@ -1,0 +1,500 @@
+/*
+ * PleaseJot · Row-first layout
+ * 以整行信息、连续区块和细分割线替代重复的小卡片。
+ * 保留 VitePress 路由、导航、目录和各页面原有业务行为。
+ */
+
+/* 首页：功能区按正常文档流排列，不再堆叠成三张大卡片。 */
+.feature-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 62px);
+  padding: clamp(54px, 6vw, 82px) var(--pj-gutter);
+  border-top: 1px solid var(--pj-hairline);
+}
+.feature-section.reverse .feature-copy { order: 2; }
+.feature-section.reverse .feature-visual { order: 1; }
+.feature-copy { max-width: 500px; }
+.feature-copy h2 { text-wrap: balance; }
+.feature-visual {
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.visual-sync, .visual-tree, .visual-super { background: transparent !important; }
+.drawing-card {
+  max-width: 660px;
+  margin-top: 7px;
+  padding: 8px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* 同步设备：三个说明放在同一条分栏中。 */
+.sync-devices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  gap: 0;
+  border-top: 1px solid var(--pj-hairline);
+  border-bottom: 1px solid var(--pj-hairline);
+}
+.sync-device {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 0;
+  border-right: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.sync-device:last-child { border-right: 0; }
+.sync-device strong { font-size: 13px; }
+.sync-device span { font-size: 11px; color: var(--xs-muted); }
+.sync-connection { margin-top: 18px; }
+.visual-caption { margin-top: 15px; }
+
+/* 文件树与 Super MarkDown：保留内容示意，去掉嵌套面板。 */
+.tree-card, .super-document {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.tree-heading { padding: 0 4px 14px; }
+.tree-list { margin-top: 0; }
+.tree-line {
+  padding: 10px 9px;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+}
+.tree-line:last-child { border-bottom: 0; }
+.tree-line.selected { background: var(--pj-surface); }
+
+.super-document { gap: 0; }
+.super-title { padding: 0 0 14px; }
+.super-document h3 { margin-top: 16px; }
+.super-document p { margin: 7px 0 8px; }
+.super-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 5px 0 14px;
+}
+.super-cards > div {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  min-height: 0;
+  padding: 13px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+}
+.super-cards strong { font-size: 13px; }
+.super-cards span { justify-self: end; }
+.formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--pj-hairline);
+}
+.formats span {
+  padding: 0 12px;
+  border: 0;
+  border-right: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+}
+.formats span:first-child { padding-left: 0; }
+.formats span:last-child { border-right: 0; }
+
+/* 多端信息：用统一平台栏替代自动轮播卡片。 */
+.platform-strip {
+  display: grid;
+  grid-template-columns: minmax(220px, .78fr) minmax(0, 1.22fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 52px);
+  padding: 54px var(--pj-gutter) 78px;
+  border-top: 1px solid var(--pj-hairline);
+}
+.platform-strip-heading .eyebrow { margin-bottom: 15px; }
+.platform-strip-heading h2 {
+  margin: 0;
+  font-size: clamp(24px, 2.7vw, 34px);
+  line-height: 1.35;
+  font-weight: 570;
+}
+.platform-strip-heading p {
+  margin-top: 10px;
+  color: var(--xs-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.platform-strip-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--pj-hairline);
+  border-bottom: 1px solid var(--pj-hairline);
+}
+.platform-item {
+  display: flex;
+  min-width: 0;
+  min-height: 94px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-right: 1px solid var(--pj-hairline);
+  color: var(--xs-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.platform-item:last-child { border-right: 0; }
+.platform-item svg { color: var(--xs-ink); }
+
+/* 文档入口：分类保留，卡片改为可扫读的链接行。 */
+.pj-doc-link-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0 32px;
+  border-top: 1px solid var(--apple-separator);
+}
+.vp-doc .pj-doc-link-card {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--apple-separator);
+  border-radius: 0;
+  background: transparent;
+  color: var(--apple-label) !important;
+  text-decoration: none !important;
+  transition: background-color .16s ease, color .16s ease;
+}
+.vp-doc .pj-doc-link-card:hover {
+  border-color: var(--apple-separator);
+  background: var(--apple-secondary-background);
+}
+.vp-doc .pj-doc-link-card .pj-page-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--apple-secondary-label);
+}
+.pj-doc-link-content { gap: 2px; }
+.pj-doc-link-content strong { font-size: 15px; font-weight: 620; }
+.pj-card-category { font-size: 10px; }
+.pj-card-desc { font-size: 12px; }
+.pj-card-arrow { margin-top: 0; }
+.pj-doc-link-card:hover .pj-card-arrow { transform: translateX(2px); }
+
+/* 更新日志最新版本也使用列表行，不单独突出成一张卡片。 */
+.vp-doc .pj-release-latest {
+  gap: 14px;
+  padding: 18px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--apple-separator);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.vp-doc .pj-release-latest:hover {
+  border-color: var(--apple-separator);
+  background: var(--apple-secondary-background);
+}
+.pj-release-latest .pj-page-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* 下载平台：统一为纵向列表，按钮仍保留在对应平台行内。 */
+.download-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 910px;
+  margin: 0 auto;
+  border-top: 1px solid var(--pj-hairline);
+}
+.download-grid > .download-card:not(.ios-support-card) {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) minmax(140px, auto);
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  gap: 3px 18px;
+  padding: 19px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.download-grid > .download-card:not(.ios-support-card) .platform-icon {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.download-grid > .download-card:not(.ios-support-card) .download-card-heading {
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.download-grid > .download-card:not(.ios-support-card) .download-card-heading h2 {
+  font-size: 17px;
+  font-weight: 630;
+}
+.download-grid > .download-card:not(.ios-support-card) p {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 3px 0;
+  font-size: 12px;
+}
+.download-grid > .download-card:not(.ios-support-card) .download-meta {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  font-size: 11px;
+}
+.download-grid > .download-card:not(.ios-support-card) .download-action {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  align-self: center;
+  justify-self: end;
+  width: auto;
+  min-width: 146px;
+  margin: 0;
+}
+.download-note {
+  max-width: 910px;
+  margin: 12px auto 0;
+  padding: 22px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.invite-banner {
+  border: 0;
+  border-top: 1px solid var(--pj-hairline);
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* 在线体验：保留一个完整入口区，下面三条规则改为说明行。 */
+.pj-demo-launch {
+  border: 1px solid var(--pj-hairline);
+  border-radius: 16px;
+  background: var(--pj-panel);
+  box-shadow: none;
+}
+.pj-demo-art {
+  border: 0;
+  border-left: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+}
+.pj-demo-illustration { gap: 20px; }
+.pj-demo-illustration .pj-page-icon {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.demo-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 25px;
+  border-top: 1px solid var(--pj-hairline);
+}
+.demo-rules > div {
+  display: grid;
+  grid-template-columns: 24px minmax(110px, 150px) minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  padding: 15px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.demo-rules h3 { margin: 0; font-size: 13px; font-weight: 650; }
+.demo-rules p { font-size: 12px; }
+
+/* 软件截图：每个平台一行，截图占位作为内容而不是卡片。 */
+.screenshots-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 25px;
+  border-top: 1px solid var(--pj-hairline);
+}
+.screenshots-grid > section {
+  display: grid;
+  grid-template-columns: minmax(190px, .68fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 8px 26px;
+  min-width: 0;
+  padding: 20px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.screenshots-grid .screenshot-placeholder {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  height: 145px;
+  border-radius: 11px;
+  background: var(--pj-surface);
+}
+.screenshots-grid .pj-shot-frame { width: 78%; height: 70%; }
+.screenshots-grid .pj-shot-title { margin: 0; }
+.screenshots-grid h2 { margin: 0; font-size: 17px; font-weight: 620; }
+.screenshots-grid p { margin: 0; }
+
+/* 正文底部导航与邀请码提示也减少卡片边框。 */
+.VPDocFooter .prev-next a {
+  border: 0;
+  border-top: 1px solid var(--pj-hairline);
+  border-radius: 0;
+  background: transparent;
+}
+.VPDocFooter .prev-next a:hover { background: var(--pj-surface); }
+
+@media (max-width: 960px) {
+  .platform-strip { grid-template-columns: 1fr; gap: 20px; }
+  .feature-section { gap: 30px; }
+}
+@media (max-width: 680px) {
+  .feature-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px 18px 62px;
+  }
+  .feature-section.reverse .feature-copy,
+  .feature-section.reverse .feature-visual { order: initial; }
+  .feature-visual { min-height: 0; padding: 0; }
+  .sync-device { min-height: 122px; gap: 9px; }
+  .sync-device svg { width: 28px; height: 28px; }
+  .sync-connection { margin-top: 16px; gap: 6px; font-size: 10px; }
+  .visual-caption { font-size: 10px; }
+  .super-cards > div { grid-template-columns: 25px minmax(0, 1fr); }
+  .super-cards > div span { grid-column: 2; justify-self: start; }
+  .formats span { padding: 0 8px; font-size: 10px; }
+  .platform-strip {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 42px 18px 58px;
+  }
+  .platform-strip-heading h2 { font-size: 25px; }
+  .platform-strip-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .platform-item {
+    min-height: 78px;
+    border-bottom: 1px solid var(--pj-hairline);
+  }
+  .platform-item:nth-child(2n) { border-right: 0; }
+  .platform-item:last-child {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .download-grid > .download-card:not(.ios-support-card) {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 4px 12px;
+    padding: 17px 0;
+  }
+  .download-grid > .download-card:not(.ios-support-card) .platform-icon {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 28px;
+    height: 28px;
+  }
+  .download-grid > .download-card:not(.ios-support-card) .download-card-heading,
+  .download-grid > .download-card:not(.ios-support-card) p,
+  .download-grid > .download-card:not(.ios-support-card) .download-meta {
+    grid-column: 2;
+  }
+  .download-grid > .download-card:not(.ios-support-card) .download-action {
+    grid-column: 2;
+    grid-row: 4;
+    justify-self: start;
+    min-width: 150px;
+    min-height: 46px;
+    margin-top: 8px;
+  }
+  .download-note { padding: 18px 0; }
+  .invite-banner { padding: 18px 0; }
+  .pj-demo-art {
+    border-left: 0;
+    border-top: 1px solid var(--pj-hairline);
+    padding-top: 20px;
+  }
+  .demo-rules > div {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 7px 11px;
+    padding: 14px 4px;
+  }
+  .demo-rules p { grid-column: 2; }
+  .screenshots-grid > section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    padding: 18px 0;
+  }
+  .screenshots-grid .screenshot-placeholder {
+    grid-column: 1;
+    grid-row: 1;
+    height: 155px;
+    margin-bottom: 2px;
+  }
+  .screenshots-grid .pj-shot-title { grid-row: 2; }
+  .screenshots-grid p { grid-row: 3; }
+  .vp-doc .pj-doc-link-card { padding: 13px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pj-doc-link-card, .pj-card-arrow, .pj-release-latest, .download-card, .demo-rules > div {
+    transition: none !important;
+  }
+}

@@ -19,6 +19,7 @@ import './styles/visual-refresh.css'
 import './styles/apple-color-usage.css'
 import './styles/page-design.css'
 import './styles/product-pages.css'
+import './styles/row-layout.css'
 
 export default {
   extends: DefaultTheme,
